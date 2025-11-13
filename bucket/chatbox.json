@@ -6,8 +6,8 @@
     "changelog": "https://github.com/chatboxai/chatbox/releases",
     "url": "https://download.chatboxai.app/releases/Chatbox-1.17.1-Setup.exe",
     "hash": "5e142ea3a95be6950150c5b21c6b2250f046855f1374c7e0b2ec4db78cb82dba",
-    "extract_dir": "PFiles\\chatbox",
-    "bin": "chatbox.exe",
+    "extract_dir": "$PLUGINSDIR",
+    "bin": "$PLUGINSDIR\\Chatbox.exe",
     "shortcuts":
     [
         [
