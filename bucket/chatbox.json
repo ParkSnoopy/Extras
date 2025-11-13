@@ -1,0 +1,27 @@
+{
+    "version": "1.3.10",
+    "description": "User-friendly Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama...)",
+    "homepage": "https://github.com/chatboxai/chatbox",
+    "license": "GPL-3.0",
+    "changelog": "https://github.com/chatboxai/chatbox/releases",
+    "url": "https://download.chatboxai.app/releases/Chatbox-1.17.1-Setup.exe",
+    "hash": "5e142ea3a95be6950150c5b21c6b2250f046855f1374c7e0b2ec4db78cb82dba",
+    "extract_dir": "PFiles\\chatbox",
+    "bin": "chatbox.exe",
+    "shortcuts":
+    [
+        [
+            "chatbox.exe",
+            "ChatBox"
+        ]
+    ],
+    "checkver":
+    {
+        "url": "https://api.github.com/repos/chatboxai/chatbox/releases",
+        "regex": "/releases/tag/v([\\d\\.]+)"
+    },
+    "autoupdate":
+    {
+        "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe"
+    }
+}
