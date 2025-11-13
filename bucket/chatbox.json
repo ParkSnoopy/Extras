@@ -6,7 +6,33 @@
     "changelog": "https://github.com/chatboxai/chatbox/releases",
     "url": "https://download.chatboxai.app/releases/Chatbox-1.17.1-Setup.exe",
     "hash": "5e142ea3a95be6950150c5b21c6b2250f046855f1374c7e0b2ec4db78cb82dba",
-    "extract_dir": "$PLUGINSDIR",
+    "architecture":
+    {
+        "64bit":
+        {
+            "pre_install":
+            [
+                "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
+                "Remove-Item -Path \"$dir\\$R0\\Uninstall Chatbox.exe\" -Force -ErrorAction SilentlyContinue",
+                "Expand-7zipArchive \"$dir\\$PLUGINSDIR\\app-64.7z\" -Overwrite Rename -Removal"
+            ]
+        },
+        "arm64":
+        {
+            "pre_install":
+            [
+                "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
+                "Remove-Item -Path \"$dir\\$R0\\Uninstall Chatbox.exe\" -Force -ErrorAction SilentlyContinue",
+                "Expand-7zipArchive \"$dir\\$PLUGINSDIR\\app-arm64.7z\" -Overwrite Rename -Removal"
+            ]
+        }
+    },
+    "post_install":
+    [
+        "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
+        "Remove-Item \"$dir\\$PLUGINSDIR\\app-64.7z\" -Recurse -Force -ErrorAction SilentlyContinue",
+        "Remove-Item \"$dir\\$PLUGINSDIR\\app-64.7z\" -Recurse -Force -ErrorAction SilentlyContinue"
+    ],
     "bin": "$PLUGINSDIR\\Chatbox.exe",
     "shortcuts":
     [
