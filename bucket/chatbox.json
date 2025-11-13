@@ -1,0 +1,58 @@
+{
+    "version": "1.17.1",
+    "description": "User-friendly Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama...)",
+    "homepage": "https://github.com/chatboxai/chatbox",
+    "license": "GPL-3.0",
+    "changelog": "https://github.com/chatboxai/chatbox/releases",
+    "url": "https://download.chatboxai.app/releases/Chatbox-1.17.1-Setup.exe",
+    "hash": "5e142ea3a95be6950150c5b21c6b2250f046855f1374c7e0b2ec4db78cb82dba",
+    "depends":
+    [
+        "main/7zip"
+    ],
+    "architecture":
+    {
+        "64bit":
+        {
+            "pre_install":
+            [
+                "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
+                "Get-ChildItem -Recurse -File -Path \"$dir\" | Move-Item -Destination \"$dir\" -Force",
+                "Expand-7zipArchive \"$dir\\app-64.7z\" -Overwrite Rename -Removal"
+            ]
+        },
+        "arm64":
+        {
+            "pre_install":
+            [
+                "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
+                "Get-ChildItem -Recurse -File -Path \"$dir\" | Move-Item -Destination \"$dir\" -Force",
+                "Expand-7zipArchive \"$dir\\app-arm64.7z\" -Overwrite Rename -Removal"
+            ]
+        }
+    },
+    "post_install":
+    [
+        "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
+        "Remove-Item \"$dir\\Uninstall Chatbox.exe\" -Recurse -Force -ErrorAction SilentlyContinue",
+        "Remove-Item \"$dir\\$PLUGINSDIR\\app-64.7z\" -Recurse -Force -ErrorAction SilentlyContinue",
+        "Remove-Item \"$dir\\$PLUGINSDIR\\app-arm64.7z\" -Recurse -Force -ErrorAction SilentlyContinue"
+    ],
+    "bin": "Chatbox.exe",
+    "shortcuts":
+    [
+        [
+            "Chatbox.exe",
+            "ChatBox"
+        ]
+    ],
+    "checkver":
+    {
+        "url": "https://api.github.com/repos/chatboxai/chatbox/releases",
+        "regex": "/releases/tag/v([\\d\\.]+)"
+    },
+    "autoupdate":
+    {
+        "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe"
+    }
+}
