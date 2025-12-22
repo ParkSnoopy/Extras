@@ -37,8 +37,8 @@
         ]
     ],
     "checkver": {
-        "url": "https://api.github.com/repos/chatboxai/chatbox/releases",
-        "regex": "/releases/tag/v([\\d\\.]+)"
+        "url": "https://chatboxai.app/en/help-center/changelog",
+        "regex": "v([\\d\\.]+) - "
     },
     "autoupdate": {
         "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe"
