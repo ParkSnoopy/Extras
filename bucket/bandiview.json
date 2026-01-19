@@ -1,24 +1,17 @@
 {
-    "version": "7.23",
+    "version": "7.24",
     "description": "A fast image viewer. BandiView is the succeeding image viewer to Honeyview.",
     "homepage": "https://en.bandisoft.com/bandiview/",
-    "license":
-    {
+    "license": {
         "identifier": "Freeware",
         "url": "https://en.bandisoft.com/bandiview/eula/"
     },
-    "depends":
-    [
-        "main/7zip"
-    ],
-    "architecture":
-    {
-        "64bit":
-        {
+    "depends": "main/7zip",
+    "architecture": {
+        "64bit": {
             "url": "https://bandisoft.app/bandiview/BANDIVIEW-SETUP-ALL.EXE",
-            "hash": "dd66fd18f0df1d93b523f9945923a42e85842cda975a8ac2200809f6b36c8db9",
-            "pre_install":
-            [
+            "hash": "64f3007797f5f30bf202e382f657da813170ecee7aa449d2c06a7dbd5aa77049",
+            "pre_install": [
                 "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
                 "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
                 "Remove-Item -Path \"$dir\\Uninstall.exe\" -Force -ErrorAction SilentlyContinue",
@@ -33,12 +26,10 @@
                 "Rename-Item -Path \"$dir\\Bandiview.x64.exe\" -NewName \"$dir\\Bandiview.exe\""
             ]
         },
-        "arm64":
-        {
+        "arm64": {
             "url": "https://bandisoft.app/bandiview/BANDIVIEW-SETUP-ALL.EXE",
-            "hash": "dd66fd18f0df1d93b523f9945923a42e85842cda975a8ac2200809f6b36c8db9",
-            "pre_install":
-            [
+            "hash": "64f3007797f5f30bf202e382f657da813170ecee7aa449d2c06a7dbd5aa77049",
+            "pre_install": [
                 "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
                 "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
                 "Remove-Item -Path \"$dir\\Uninstall.exe\" -Force -ErrorAction SilentlyContinue",
@@ -55,16 +46,14 @@
         }
     },
     "bin": "Bandiview.exe",
-    "shortcuts":
-    [
+    "shortcuts": [
         [
             "Bandiview.exe",
             "Bandiview"
         ]
     ],
     "checkver": "Version Info: v([\\d.]+)",
-    "autoupdate":
-    {
+    "autoupdate": {
         "url": "https://bandisoft.app/bandiview/BANDIVIEW-SETUP-ALL.EXE"
     }
 }
