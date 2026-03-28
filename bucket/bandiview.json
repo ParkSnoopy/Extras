@@ -1,5 +1,5 @@
 {
-    "version": "7.25",
+    "version": "7.26",
     "description": "A fast image viewer. BandiView is the succeeding image viewer to Honeyview.",
     "homepage": "https://en.bandisoft.com/bandiview/",
     "license": {
@@ -10,7 +10,7 @@
     "architecture": {
         "64bit": {
             "url": "https://bandisoft.app/bandiview/BANDIVIEW-SETUP-ALL.EXE",
-            "hash": "337ececf3c593efd576be35be60c33211453a448851d758291c94eed1b44e335",
+            "hash": "9f94a19ab49327a32007081c892e4e17b67f9ce6ee829d686722e9d51dc2e5d6",
             "pre_install": [
                 "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
                 "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
@@ -28,7 +28,7 @@
         },
         "arm64": {
             "url": "https://bandisoft.app/bandiview/BANDIVIEW-SETUP-ALL.EXE",
-            "hash": "337ececf3c593efd576be35be60c33211453a448851d758291c94eed1b44e335",
+            "hash": "9f94a19ab49327a32007081c892e4e17b67f9ce6ee829d686722e9d51dc2e5d6",
             "pre_install": [
                 "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
                 "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
