@@ -1,46 +1,62 @@
 {
     "version": "1.20.0-beta.3",
-    "description": "User-friendly Desktop Client App for AI Models/LLMs (GPT, Claude, Gemini, Ollama...)",
-    "homepage": "https://github.com/chatboxai/chatbox",
-    "license": "GPL-3.0",
-    "changelog": "https://github.com/chatboxai/chatbox/releases",
-    "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-beta.3-Setup.exe",
-    "hash": "ed7a854aab28e73075af50567b787e5e2c0ffada1db4f70e085cc6da9ca80ab5",
-    "depends": "main/7zip",
+    "description": "Powerful AI desktop client with support for ChatGPT, Claude and other LLMs.",
+    "homepage": "https://chatboxai.app/",
+    "license": {
+        "identifier": "GPL-3.0-or-later",
+        "url": "https://github.com/chatboxai/chatbox/blob/main/LICENSE"
+    },
     "architecture": {
         "64bit": {
-            "pre_install": [
-                "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
-                "Get-ChildItem -Recurse -File -Path \"$dir\" | Move-Item -Destination \"$dir\" -Force",
-                "Expand-7zipArchive \"$dir\\app-64.7z\" -Overwrite Rename -Removal"
-            ]
+            "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-beta.3-Setup.exe#/dl.7z",
+            "hash": "ed7a854aab28e73075af50567b787e5e2c0ffada1db4f70e085cc6da9ca80ab5"
         },
         "arm64": {
-            "pre_install": [
-                "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
-                "Get-ChildItem -Recurse -File -Path \"$dir\" | Move-Item -Destination \"$dir\" -Force",
-                "Expand-7zipArchive \"$dir\\app-arm64.7z\" -Overwrite Rename -Removal"
-            ]
+            "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-beta.3-Setup.exe#/dl.7z",
+            "hash": "ed7a854aab28e73075af50567b787e5e2c0ffada1db4f70e085cc6da9ca80ab5"
         }
     },
-    "post_install": [
-        "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
-        "Remove-Item \"$dir\\Uninstall Chatbox.exe\" -Recurse -Force -ErrorAction SilentlyContinue",
-        "Remove-Item \"$dir\\$PLUGINSDIR\\app-64.7z\" -Recurse -Force -ErrorAction SilentlyContinue",
-        "Remove-Item \"$dir\\$PLUGINSDIR\\app-arm64.7z\" -Recurse -Force -ErrorAction SilentlyContinue"
+    "pre_install": [
+        "$arch = $architecture -replace 'bit',''",
+        "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-$arch.7z\" \"$dir\" -Removal",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
     ],
-    "bin": "Chatbox.exe",
+    "post_install": [
+        "$file = \"$persist_dir\\User Data\\config.json\"",
+        "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:APPDATA\\xyz.chatboxapp.app\")) {",
+        "    info '[Portable Mode]: Copying user data...'",
+        "    Copy-Item \"$env:APPDATA\\xyz.chatboxapp.app\\*\" \"$dir\\User Data\" -Recurse",
+        "    if ((Test-Path $file)) {",
+        "        warn \"Disabling incompatible autoUpdate\"",
+        "        (Get-Content $file) -replace '\"autoUpdate\": true', '\"autoUpdate\": false' | Set-Content $file -Encoding ASCII",
+        "    }",
+        "}",
+        "if (!(Test-Path $file)) {",
+        "   $json = \"{`n`t'settings': {`n`t`t'autoUpdate': false`n`t}`n}`n\"",
+        "   $json.Replace(\"'\", '\"') | Out-File -FilePath $file -Encoding ASCII",
+        "   warn \"Do not enable autoUpdate inside Chatbox, use scoop update instead\"",
+        "}"
+    ],
     "shortcuts": [
         [
             "Chatbox.exe",
-            "ChatBox"
+            "Chatbox",
+            "--user-data-dir=\"$dir\\User Data\""
         ]
     ],
+    "persist": "User Data",
     "checkver": {
         "url": "https://chatboxai.app/en/help-center/changelog",
         "regex": "v([\\d\\.]+(?:-[a-zA-Z0-9.]+)?) - "
     },
     "autoupdate": {
-        "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe#/dl.7z"
+            },
+            "arm64": {
+                "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe#/dl.7z"
+            }
+        }
     }
 }
