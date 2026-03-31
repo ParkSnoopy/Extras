@@ -1,5 +1,5 @@
 {
-    "version": "1.20.0-beta.3",
+    "version": "1.20.0",
     "description": "Powerful AI desktop client with support for ChatGPT, Claude and other LLMs.",
     "homepage": "https://chatboxai.app/",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-beta.3-Setup.exe#/dl.7z",
-            "hash": "ed7a854aab28e73075af50567b787e5e2c0ffada1db4f70e085cc6da9ca80ab5"
+            "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-Setup.exe#/dl.7z",
+            "hash": "fa560f34910f9228cb5f30e431451cf951bdb946a3fe31d1aa4442946ba3b044"
         },
         "arm64": {
-            "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-beta.3-Setup.exe#/dl.7z",
-            "hash": "ed7a854aab28e73075af50567b787e5e2c0ffada1db4f70e085cc6da9ca80ab5"
+            "url": "https://download.chatboxai.app/releases/Chatbox-1.20.0-Setup.exe#/dl.7z",
+            "hash": "fa560f34910f9228cb5f30e431451cf951bdb946a3fe31d1aa4442946ba3b044"
         }
     },
     "pre_install": [
